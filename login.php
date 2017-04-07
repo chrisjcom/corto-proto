@@ -82,28 +82,74 @@ if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes 
 else{
 // if they are not logged in 
 ?>
- <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post"> 
- <table border="0"> 
- <tr><td colspan=2><h1>Login</h1></td></tr> 
- <tr><td>Username:</td><td> 
- <input type="text" name="username" maxlength="40"> 
- </td></tr> 
- <tr><td>Pass:</td><td> 
- <input type="password" name="pass" maxlength="50"> 
- </td></tr> 
- <tr><td colspan="2" align="right"> 
- <input type="submit" name="submit" value="Login"> 
- </td></tr> 
- </table> 
- </form> 
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebApp Protocolos 2017</title>
+    <!--  CSS  -->
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <link rel="stylesheet" href="css/materialize.min.css" media="screen">
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">Login Protocolos</a>
+        </div>
+      </nav>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 offset-m3">
+          <div class="card z-depth-4">
+            <div class="card-content">
+              <span class="card-title black-text" style="text-align: center;">Inicio de Sesión</span>              
+              <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="username" class="validate" maxlength="40">
+                    <label for="text">Usuario</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="password" name="pass" class="validate" maxlength="50">
+                    <label for="password">Contraseña</label>
+                  </div>
+                </div>
+                <div class="card-action center">
+                  <input type="submit" class="btn" name="submit" value="Login">
+                </div>
+                <!--
+                <table border="0">
+                  <tr><td>Username:</td><td>
+                    <input type="text" name="username" maxlength="40">
+                  </td></tr>
+                  <tr><td>Pass:</td><td>
+                    <input type="password" name="pass" maxlength="50">
+                  </td></tr>
+                  <tr><td colspan="2" align="right">
+                    <input type="submit" name="submit" value="Login">
+                  </td></tr>
+                </table>
+              -->
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>
  <?php 
  }
- function getUser($userToFindOut,$users) {
-    foreach ($users as $key => $value) {
-        if($value['user'] == $userToFindOut) {
-            return $value;
-        }
-    }
-    return 0;
-}
+ 
  ?> 

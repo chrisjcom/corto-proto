@@ -10,20 +10,23 @@ include 'users.php';
  	//$check = mysql_query("SELECT * FROM users WHERE username = '$username'")or die(mysql_error()); 
  	//while($info = mysql_fetch_array( $check )){ 
 		//if the cookie has the wrong password, they are taken to the login page 
-	foreach ($users as $key => $value) {
-		if($username == $value['user']) {
-			if ($pass != $value['pass']){
+	$usuario = getUser($username,$users);
+	//foreach ($users as $key => $value) {
+		if($username == $usuario['user']) {
+			if ($pass != $usuario['pass']){
 				header("Location: login.php"); 
 			}
 			//otherwise they are shown the admin area
 			else{
-				echo 'Hostname: '.gethostname().'<p>';
-				echo "Admin Area<p>"; 
-				echo $username."'s Content<p>"; 
-				echo "<a href=logout.php>Logout</a>"; 
+?>
+				<p>Hostname: <?php echo gethostname()?></p>
+				<p>Admin Area</p>
+				<p><?php echo $usuario['name']; ?>'s Content</p>
+				<a href=logout.php>Logout</a> 
+<?php
 			}
 		}
-	} 		
+	//}
 	//}
 }
  else{ //if the cookie does not exist, they are taken to the login screen 
