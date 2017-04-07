@@ -6,7 +6,7 @@ include 'users.php';
 if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes you to the members page
  	$username = $_COOKIE['ID_your_site'];
  	$pass = $_COOKIE['Key_your_site'];
-	$usuario = getUser($username);
+	$usuario = getUser($username,$users);
 	//foreach ($users as $key => $value) {		
 		if($username == $usuario['user']) {			
 			if($pass == $usuario['pass']) {				
@@ -43,7 +43,7 @@ if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes 
  if ($check2 == 0){
 	die('That user does not exist in our database.<br /><br />If you think this is wrong <a href="login.php">try again</a>.');
 }*/	
-	$usuario = getUser($_POST['username']);
+	$usuario = getUser($_POST['username'], $users);
 	//foreach ($users as $key => $value) {		
 		if($_POST['username'] = $usuario['user']) {			
 			$_POST['pass'] = stripslashes($_POST['pass']);
@@ -98,4 +98,12 @@ else{
  </form> 
  <?php 
  }
+ function getUser($userToFindOut,$users) {
+    foreach ($users as $key => $value) {
+        if($value['user'] == $userToFindOut) {
+            return $value;
+        }
+    }
+    return 0;
+}
  ?> 

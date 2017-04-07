@@ -10,13 +10,4 @@ $user2['pass'] = '123456';
 $user2['name'] = "Usuario 2";
 $users[0] = $user1;
 $users[1] = $user2;
-
-function getUser($userToFindOut) {
-    foreach ($users as $key => $value) {
-        if($value['user'] == $userToFindOut) {
-            return $value;
-        }
-    }
-    return 0;
-}
 ?>
