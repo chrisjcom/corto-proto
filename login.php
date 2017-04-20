@@ -1,11 +1,12 @@
 <?php 
+session_start();
 include 'users.php';
 //Connects to your Database 
 //$conect = mysqli_connect("localhost","root","210591", "simple-php-login") or die(mysql_error()); 
 //Checks if there is a login cookie
-if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes you to the members page
- 	$username = $_COOKIE['ID_your_site'];
- 	$pass = $_COOKIE['Key_your_site'];
+if(isset($_SESSION['user'])){ //if there is, it logs you in and directes you to the members page
+ 	$username = $_SESSION['user'];
+ 	$pass = $_SESSION['pass'];
 	$usuario = getUser($username,$users);
 	//foreach ($users as $key => $value) {		
 		if($username == $usuario['user']) {			
@@ -54,8 +55,10 @@ if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes 
 			else{ // if login is ok then we add a cookie 
 				$_POST['username'] = stripslashes($_POST['username']); 
 				$hour = time() + 3600; 
-				setcookie('ID_your_site', $_POST['username'], $hour); 
-				setcookie('Key_your_site', $_POST['pass'], $hour);	 
+				$_SESSION['user'] = $_POST['username'];
+				$_SESSION['pass'] = $_POST['pass'];
+				// setcookie('ID_your_site', $_POST['username'], $hour); 
+				// setcookie('Key_your_site', $_POST['pass'], $hour);	 
 				//then redirect them to the members area 
 				header("Location: members.php"); 
 			}
@@ -137,13 +140,11 @@ else{
                 </table>
               -->
               </form>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- JS -->
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
